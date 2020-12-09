@@ -2,37 +2,31 @@ function Game(canvas) {
     this.canvas = canvas;
     let tanks = [];
     let ctx = this.canvas.getContext("2d");
-    let tank = initNewTank();
-    console.log (tank)
-    tanks.push(tank)
+    tanks.push(initNewTank());
     this.requestNextFrame = function () {
-       
         moveTank();
     }
-
     this.draw = function () {
+        
         clearCanvas();
         drawTank();
     }
-    function moveTank() {
-        for (let i = 0; i <= tanks.length; i++) {
-            console.log(tanks[i])
-            tanks[i].run();
-            
-        }
-        
+    function initNewTank() {
+        return new Tank(1,1)
     }
-    function drawTank() {
-        for (let i = 0; i <= tanks.length; i++) {
-            tanks[i].draw(ctx);
+    function moveTank() {
+        for (let i = 0; i < tanks.length; i++) {
+            tanks[i].run();
         }
     }
     function clearCanvas() {
         ctx.clearRect(0, 0, parseInt(canvas.width), parseInt(canvas.height));
     }
-    function initNewTank() { 
-        let tank = new Tank()   
-        console.log(tank)
-        return tank
+    function drawTank() {
+        for (let i = 0; i < tanks.length; i++) {
+            console.log(tanks[i])
+            tanks[i].draw(ctx);
+        }
     }
+    console.log(tanks)
 }

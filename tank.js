@@ -1,11 +1,11 @@
 function Tank(x, y) {
     this.x = x;
     this.y = y;
-    this.vx = 0
-    this.vy = 1
+    this.vx = 0;
+    this.vy = 1;
     this.run = function () {
-        this.x += this.vX
-        this.y += this.vY
+        this.x += this.vx
+        this.y += this.vy
     }
     this.draw = function (ctx) {
         let img = new Image()
