@@ -13,4 +13,3 @@ function Tank(x, y) {
         ctx.drawImage(img, this.x, this.y);
     }
 }
-}
