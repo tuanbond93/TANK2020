@@ -1,8 +1,8 @@
 function Tank(x, y) {
     this.x = x;
     this.y = y;
-    this.vx = vx;
-    this.vy = vy;
+    this.vx = 0
+    this.vy = 1
     this.run = function () {
         this.x += this.vX
         this.y += this.vY

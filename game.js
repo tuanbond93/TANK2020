@@ -3,6 +3,7 @@ function Game(canvas) {
     let tanks = [];
     let ctx = this.canvas.getContext("2d");
     this.requestNextFrame = function () {
+        tanks.push(initNewTank());
         moveTank();
     }
 
@@ -22,5 +23,8 @@ function Game(canvas) {
     }
     function clearCanvas() {
         ctx.clearRect(0, 0, parseInt(canvas.width), parseInt(canvas.height));
+    }
+    function initNewTank() {    
+        new Tank(1,1)
     }
 }
