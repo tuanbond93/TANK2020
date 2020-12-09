@@ -9,7 +9,7 @@ function Tank(x, y) {
     }
     this.draw = function (ctx) {
         let img = new Image()
-        img.src = "car.png"
+        img.src = "tank.png"
         ctx.drawImage(img, this.x, this.y);
     }
 }
