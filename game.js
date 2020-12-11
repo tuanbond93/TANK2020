@@ -12,11 +12,16 @@ function Game(canvas) {
         drawTank();
     }
     function initNewTank() {
-        return new Tank(1,1)
+        return new Tank(1,0)
     }
+    function keyDownHandler(evt) {
+        a = evt.keyCode;
+        console.log(a)
+    }
+
     function moveTank() {
         for (let i = 0; i < tanks.length; i++) {
-            tanks[i].run();
+            tanks[i].runDown();
         }
     }
     function clearCanvas() {
@@ -24,9 +29,9 @@ function Game(canvas) {
     }
     function drawTank() {
         for (let i = 0; i < tanks.length; i++) {
-            console.log(tanks[i])
+            
             tanks[i].draw(ctx);
         }
     }
-    console.log(tanks)
+    
 }
