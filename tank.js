@@ -52,6 +52,19 @@ function Tank(x, y) {
     }
 
     this.fire = function () {
-        return new Bullet();
+        let vx = 0;
+        if (this.vx > 0) {
+            vx = 2;
+        } else if (this.vx < 0) {
+            vx = -2
+        }
+
+        let vy = 0;
+        if (this.vy > 0) {
+            vy = 2;
+        } else if (this.vy < 0) {
+            vy = -2
+        }
+        return new Bullet(this.x, this.y, vx, vy);
     }
 }

@@ -1,8 +1,8 @@
-function Bullet(x, y) {
+function Bullet(x, y, vx, vy) {
     this.x = x;
     this.y = y;
-    this.vx = 0;
-    this.vy = 2;
+    this.vx = vx;
+    this.vy = vy;
     this.runLeft = function () {
         this.vx = -2
         this.vy = 0
