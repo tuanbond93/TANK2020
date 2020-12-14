@@ -3,22 +3,22 @@ function Tank(x, y) {
     this.y = y;
     this.vx = 0;
     this.vy = 1;
-    this.runLeft = function () {
+    this.turnLeft = function () {
         this.vx = -1
         this.vy = 0
 
     }
-    this.runRight = function () {
+    this.turnRight = function () {
         this.vx = 1
         this.vy = 0
 
     }
-    this.runUp = function () {
+    this.turnUp = function () {
         this.vx = 0
         this.vy = -1
 
     }
-    this.runDown = function () {
+    this.turnDown = function () {
         this.vx = 0
         this.vy = 1
 

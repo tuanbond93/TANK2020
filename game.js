@@ -6,10 +6,9 @@ function Game(canvas) {
     const CONTROL_FIRE = 13
 
     this.canvas = canvas;
-    let tanks = [];
+    let playerTank = initNewTank();
     let bullets = [];
     let ctx = this.canvas.getContext("2d");
-    tanks.push(initNewTank());
 
     this.requestNextFrame = function () {
         moveTank();
@@ -26,35 +25,25 @@ function Game(canvas) {
         console.log(controlCode)
         switch (controlCode) {
             case CONTROL_MOVE_LEFT:
-                for (let i = 0; i < tanks.length; i++) {
-                    tanks[i].runLeft();
-                }
+                playerTank.turnLeft();
                 break;
 
             case CONTROL_MOVE_RIGHT:
-                for (let i = 0; i < tanks.length; i++) {
-                    tanks[i].runRight();
-                }
+                playerTank.turnRight();
                 break;
             case CONTROL_MOVE_UP:
-                for (let i = 0; i < tanks.length; i++) {
-                    tanks[i].runUp();
-                }
+                playerTank.turnUp();
                 break;
             case CONTROL_MOVE_DOWN:
-                for (let i = 0; i < tanks.length; i++) {
-                    tanks[i].runDown();
-                }
+                playerTank.turnDown();
                 break;
             case CONTROL_FIRE:
                 bullets.push(initNewBullet());
                 for (let i = 0; i < bullets.length; i++) {
                     bullets[i].run();
-                    bullets[i].x = tanks[i].x
-                    bullets[i].y = tanks[i].y
+                    bullets[i].x = playerTank.x
+                    bullets[i].y = playerTank.y
                     console.log(bullets[i])
-                    console.log(tanks[i])
-                    console.log(tanks[i].x)
                 }
                 break
         }
@@ -69,9 +58,7 @@ function Game(canvas) {
     }
 
     function moveTank() {
-        for (let i = 0; i < tanks.length; i++) {
-            tanks[i].run();
-        }
+        playerTank.run();
     }
     function moveBullet() {
         for (let i = 0; i < bullets.length; i++) {
@@ -82,9 +69,7 @@ function Game(canvas) {
         ctx.clearRect(0, 0, parseInt(canvas.width), parseInt(canvas.height));
     }
     function drawTank() {
-        for (let i = 0; i < tanks.length; i++) {
-            tanks[i].draw(ctx);
-        }
+        playerTank.draw(ctx);
     }
     function drawBullet() {
         for (let i = 0; i < bullets.length; i++) {
