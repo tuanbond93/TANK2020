@@ -3,6 +3,17 @@ function Tank(x, y) {
     this.y = y;
     this.vx = 0;
     this.vy = 1;
+
+    let imgLeft = new Image()
+    imgLeft.src = "tankLeft.png"
+    let imgRight = new Image()
+    imgRight.src = "tankRight.png"
+    let imgUp = new Image()
+    imgUp.src = "tankUp.png"
+    let imgDown = new Image()
+    imgDown.src = "tankDown.png"
+
+
     this.turnLeft = function () {
         this.vx = -1
         this.vy = 0
@@ -30,24 +41,13 @@ function Tank(x, y) {
     }
     this.draw = function (ctx) {
         if (this.vx === -1) {
-            let img = new Image()
-            img.src = "tankLeft.png"
-            ctx.drawImage(img, this.x, this.y);
-        }
-        if (this.vx === 1) {
-            let img = new Image()
-            img.src = "tankRight.png"
-            ctx.drawImage(img, this.x, this.y);
-        }
-        if (this.vy === -1) {
-            let img = new Image()
-            img.src = "tankUp.png"
-            ctx.drawImage(img, this.x, this.y);
-        }
-        if (this.vy === 1) {
-            let img = new Image()
-            img.src = "tankDown.png"
-            ctx.drawImage(img, this.x, this.y);
+            ctx.drawImage(imgLeft, this.x, this.y);
+        } else if (this.vx === 1) {
+            ctx.drawImage(imgRight, this.x, this.y);
+        } else if (this.vy === -1) {
+            ctx.drawImage(imgUp, this.x, this.y);
+        } else if (this.vy === 1) {
+            ctx.drawImage(imgDown, this.x, this.y);
         }
     }
 
