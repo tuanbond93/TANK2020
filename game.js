@@ -38,25 +38,12 @@ function Game(canvas) {
                 playerTank.turnDown();
                 break;
             case CONTROL_FIRE:
-                bullets.push(initNewBullet());
-                for (let i = 0; i < bullets.length; i++) {
-                    bullets[i].run();
-                    bullets[i].x = playerTank.x
-                    bullets[i].y = playerTank.y
-                    console.log(bullets[i])
-                }
-                break
+                bullets.push(playerTank.fire())
         }
     }
-
     function initNewTank() {
         return new Tank(0, 0)
     }
-
-    function initNewBullet() {
-        return new Bullet()
-    }
-
     function moveTank() {
         playerTank.run();
     }
