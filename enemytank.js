@@ -1,9 +1,9 @@
-function Tank(x, y) {
+function enemyTank2(x, y) {
     this.x = x;
     this.y = y;
-    this.vx = 0;
-    this.vy = 1;
-
+    this.vx = 0
+    this.vy = 0
+    let count = 100
     let imgLeft = new Image()
     imgLeft.src = "tankLeft.png"
     let imgRight = new Image()
@@ -14,6 +14,10 @@ function Tank(x, y) {
     imgDown.src = "tankDown.png"
     let imgExplosion = new Image()
     imgExplosion.src = "explosion.png"
+    this.hp = 1;
+    targetX = 300
+    targetY = 300
+
 
 
     this.turnLeft = function () {
@@ -38,10 +42,26 @@ function Tank(x, y) {
     }
 
     this.run = function () {
+        console.log(this.x, targetX, this.y, this.vx, this.vy)
+        if (this.x <= targetX) {
+            this.vx = 1;
+            this.vy = 0;
+        } else if (this.y <= targetY) {
+            this.vx = 0;
+            this.vy = 1;
+        } else {
+            targetX = 0;
+            targetY = 0;
+            this.vx = -1;
+            this.vy = -1;
+        }
         this.x += this.vx
         this.y += this.vy
     }
     this.draw = function (ctx) {
+        // for (let i = 1; i < 10; i++) {
+        //     this.vx = Math.floor(Math.random() * 2.5 - 0.5)
+        //     this.vy = Math.floor(Math.random() * 2.5 - 0.5)
         if (this.vx === -1) {
             ctx.drawImage(imgLeft, this.x, this.y);
         } else if (this.vx === 1) {
@@ -51,6 +71,7 @@ function Tank(x, y) {
         } else if (this.vy === 1) {
             ctx.drawImage(imgDown, this.x, this.y);
         }
+        // }
     }
 
     this.fire = function () {
@@ -69,19 +90,18 @@ function Tank(x, y) {
         }
         return new Bullet(this.x, this.y, vx, vy);
     }
-
     this.stop = function () {
         if (this.x > 370) {
-            this.x = (this.x - 1)           
+            this.x = (this.x - 1)
         }
         if (this.x < 0) {
-            this.x = (this.x + 1)           
+            this.x = (this.x + 1)
         }
         if (this.y > 370) {
-            this.y = (this.y - 1)           
+            this.y = (this.y - 1)
         }
         if (this.y < 0) {
-            this.y = (this.y + 1)           
+            this.y = (this.y + 1)
         }
     }
 }

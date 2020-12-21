@@ -7,22 +7,29 @@ function Game(canvas) {
 
     this.canvas = canvas;
     let playerTank = initNewTank();
+    let enemyTank = initNewEnemyTank();
     let bullets = [];
     let ctx = this.canvas.getContext("2d");
 
     this.requestNextFrame = function () {
         moveTank();
+        moveEnemyTank();
         moveBullet();
+        stopTank();
+        stopEnemyTank();
+        checkBulletHitTank();
+        removeDamageTank();
     }
     this.draw = function () {
 
         clearCanvas();
         drawTank();
+        drawEnemyTank();
         drawBullet();
+
     }
 
     this.control = function (controlCode) {
-        console.log(controlCode)
         switch (controlCode) {
             case CONTROL_MOVE_LEFT:
                 playerTank.turnLeft();
@@ -44,8 +51,14 @@ function Game(canvas) {
     function initNewTank() {
         return new Tank(0, 0)
     }
+    function initNewEnemyTank() {
+        return new enemyTank2(100, 100)
+    }
     function moveTank() {
         playerTank.run();
+    }
+    function moveEnemyTank() {
+        enemyTank.run();
     }
     function moveBullet() {
         for (let i = 0; i < bullets.length; i++) {
@@ -58,9 +71,31 @@ function Game(canvas) {
     function drawTank() {
         playerTank.draw(ctx);
     }
+    function drawEnemyTank() {
+        enemyTank.draw(ctx);
+    }
     function drawBullet() {
         for (let i = 0; i < bullets.length; i++) {
             bullets[i].draw(ctx)
         }
+    }
+    function stopTank() {
+        playerTank.stop();
+    }
+    function stopEnemyTank() {
+        enemyTank.stop();
+    }
+    function checkBulletHitTank() {
+        for (let i = 0; i < bullets.length; i++) {
+            if (bullets[i].isHit(enemyTank)) {
+                bullets[i].damage(enemyTank)
+            }
+        }
+    }
+    function removeDamageTank() {
+        if (enemyTank.hp === 0) {
+            enemyTank = initNewEnemyTank();
+        }
+
     }
 }

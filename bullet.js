@@ -25,7 +25,7 @@ function Bullet(x, y, vx, vy) {
     }
 
     this.run = function () {
-        
+
         this.x += this.vx
         this.y += this.vy
     }
@@ -51,4 +51,16 @@ function Bullet(x, y, vx, vy) {
             ctx.drawImage(img, this.x, this.y);
         }
     }
+    this.isHit = function(tank) {
+        if (this.x >= tank.x && this.x <= (tank.x + 19) && this.y >= tank.y && this.y <= (tank.y + 19) ) {
+            return true
+        } 
+        return false
+        
+    }
+
+    this.damage = function(tank) {
+        tank.hp = 0;
+    }
+    
 }
